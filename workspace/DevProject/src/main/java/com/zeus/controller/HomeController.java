@@ -18,8 +18,12 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -44,6 +48,59 @@ public class HomeController {
 		return "home";
 	}
 	
+	@GetMapping(value = "/registerSpringForm")
+	public String registerSpringForm(Member member, Model model) {
+		log.info("registerSpringForm");
+//		model.addAttribute("member",new Member());
+		member.setUserName("seoldong");
+		return "registerSpringForm";
+	}
+//	@PostMapping(value = "/register")
+//	public String register(Member member, BindingResult result) {
+//		log.info("register");
+//		member.setUserId("aaaaa");
+//		if(result.hasErrors()) {
+//			return "registerSpringForm";
+//		}
+////		model.addAttribute("member",member);
+//		return "register";
+//	}
+	@PostMapping(value = "/register")
+	public String register(Member member) {
+		log.info("register");
+		List<String> hobbyList = member.getHobbyList();
+		for(String data : hobbyList) {
+			log.info(data);
+		}
+		return "success";
+	}
+	
+	@GetMapping(value = "/registerSpringFormCheckboxes01")
+	public String registerSpringFormCheckboxes01(Model model) {
+		log.info("registerSpringFormCheckboxes01");
+		Map<String, String> hobbyMap= new HashMap<String,String>();
+		hobbyMap.put("01","축구");
+		hobbyMap.put("02","야구");
+		hobbyMap.put("03","배구");
+		model.addAttribute("hobbyMap", hobbyMap);
+		model.addAttribute("member", new Member());
+		return "registerSpringFormCheckboxes01";
+	}
+	
+	@GetMapping(value ="/registerModelForm" )
+	public String registerModelForm() {
+		log.info("registerModelForm");
+		return "registerModelForm";
+	}
+	@PostMapping(value ="/registerModelForm01" )
+	public String registerModelForm01(@ModelAttribute("password") String password, String userId,Model model) {
+		log.info("registerModelForm01");
+		userId = "aaaa";
+		password = "3333";
+		model.addAttribute("userId", userId);
+		return "registerModelForm01";
+	}
+	
 	@RequestMapping(value = "/board/read/{boardNo}", method = RequestMethod.GET)
 	public String home(@PathVariable("boardNo") int boardNo) {
 		log.info("boardNo : " + boardNo);
@@ -61,6 +118,7 @@ public class HomeController {
 		log.info("call ajaxHome.jsp");
 		return "ajaxHome";
 	}
+	
 	
 	@PutMapping(value="/board/{boardNo}")
 	public ResponseEntity<String> boardModify(@PathVariable("boardNo") int boardNo,@RequestBody Board board) {
@@ -89,5 +147,11 @@ public class HomeController {
 		Date date = new Date();
 		model.addAttribute("now", date);
 		return "home3304";
+	}
+	@GetMapping(value = "/registerAjaxFileUpForm")
+	public String registerAjaxFileUpForm() {
+		log.info("registerAjaxFileUpForm");
+		
+		return"registerAjaxFileUpForm";//뷰파일명
 	}
 }
