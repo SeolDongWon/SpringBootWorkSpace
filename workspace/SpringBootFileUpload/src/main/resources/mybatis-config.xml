@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE configuration
+PUBLIC "-//mybatis.org//DTD Config 3.0//EN" "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<!-- mapUnderscoreToCamelCase 프로퍼티 값을 true로 지정 -->
+<configuration>
+	<settings>
+		<!-- 테이블 컬럼의 스네이크표기법과 자바의 카멜표기법을 매핑 -->
+		<setting name="mapUnderscoreToCamelCase" value="true" />
+	</settings>
+	<!-- TypeAlias 로 맵핑 파일에서 반복적으로 사용될 패키지의 이름을 정의한다. -->
+	<typeAliases>
+	<!-- 해당 패키지에 있는 클래스는 매핑파일에 클래스명만 작성해도 매핑가능 -->
+		<package name="com.zeus.domain" />
+	</typeAliases>
+</configuration>
