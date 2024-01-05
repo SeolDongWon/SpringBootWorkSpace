@@ -2,7 +2,6 @@
 	pageEncoding="UTF-8"%>
 <!-- 범용 spring 태그라이브러리를 선언한다. -->
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 <!DOCTYPE html>
@@ -12,28 +11,19 @@
 <title>Image Shop</title>
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+</head>
 <script>
 	$(document).ready(function() {
-		var formObj = $("#codeGroup");
-		
-		$("#btnEdit").on("click", function() {
-			var groupCode = $("#groupCode");
-			var groupCodeVal = groupCode.val();
-			self.location = "modify?groupCode=" + groupCodeVal;
-		});
-		
-		$("#btnRemove").on("click", function() {
-			formObj.attr("action", "/codegroup/remove");
+		var formObj = $("#codeDetail");
+		$("#btnRegister").on("click", function() {
 			formObj.submit();
 		});
-		
 		$("#btnList").on("click", function() {
 			self.location = "list";
 		});
 	});
 </script>
 
-</head>
 <body>
 	<!--HEADER AREA  -->
 	<%@ include file="/WEB-INF/views/common/header.jsp"%>
@@ -41,40 +31,40 @@
 	<%@ include file="/WEB-INF/views/common/menu.jsp"%>
 	<!--CONTENT AREA  -->
 	<h2>
-		<spring:message code="codegroup.header.read" />
+		<spring:message code="codedetail.header.register" />
 	</h2>
-	<form:form modelAttribute="codeGroup">
+	<form:form modelAttribute="codeDetail" action="/codedetail/register">
 		<table>
 			<tr>
-				<td><spring:message code="codegroup.groupCode" /></td>
-				<td><form:input path="groupCode" readonly="true" /></td>
+				<td><spring:message code="codedetail.groupCode" /></td>
+				<td><form:select path="groupCode" items="${groupCodeList}"
+						itemValue="value" itemLabel="label" /></td>
 				<td><font color="red"><form:errors path="groupCode" /></font></td>
 			</tr>
 			<tr>
-				<td><spring:message code="codegroup.groupName" /></td>
-				<td><form:input path="groupName" readonly="true" /></td>
-				<td><font color="red"><form:errors path="groupName" /></font></td>
+				<td><spring:message code="codedetail.codeValue" /></td>
+				<td><form:input path="codeValue" /></td>
+				<td><font color="red"><form:errors path="codeValue" /></font></td>
+			</tr>
+			<tr>
+				<td><spring:message code="codedetail.codeName" /></td>
+				<td><form:input path="codeName" /></td>
+				<td><font color="red"><form:errors path="codeName" /></font></td>
 			</tr>
 		</table>
 	</form:form>
 	<div>
-		<button type="submit" id="btnEdit">
-			<spring:message code="action.edit" />
-		</button>
-		<button type="submit" id="btnRemove">
-			<spring:message code="action.remove" />
+		<button type="submit" id="btnRegister">
+			<spring:message code="action.register" />
 		</button>
 		<button type="submit" id="btnList">
 			<spring:message code="action.list" />
 		</button>
 	</div>
 
-
-
-
-
-
 	<!--FOOTER AREA  -->
 	<%@ include file="/WEB-INF/views/common/footer.jsp"%>
+
+	<!-- 메시지 프로퍼티 파일로부터 메시지 내용을 읽어온다. -->
 </body>
 </html>
