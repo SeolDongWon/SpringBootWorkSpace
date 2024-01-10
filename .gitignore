@@ -6,7 +6,7 @@
 # 4) Push: git push
 
 # properties
-#*.properties
+*.properties
 
 /target/
 !.mvn/wrapper/maven-wrapper.jar

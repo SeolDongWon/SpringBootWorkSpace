@@ -19,4 +19,10 @@ public class CodeServiceImpl implements CodeService {
 	public List<CodeLabelValue> getCodeGroupList() throws Exception {
 		return mapper.getCodeGroupList();
 	}
+
+	@Override
+	public List<CodeLabelValue> getCodeList(String groupCode) throws Exception {
+		// TODO Auto-generated method stub
+		return null;
+	}
 }
