@@ -25,5 +25,6 @@ public class Member {
 	private boolean enabled;
 	private Date regDate;
 	private Date updDate;
+	
 	private List<MemberAuth> authList;
 }

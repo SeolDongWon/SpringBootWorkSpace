@@ -30,7 +30,7 @@ public class SecurityConfig
         http.csrf().disable();
         
         //주석 팁
-        /* 관리자전체페이지를 권한을 인가요청할 때 http.authorizehttpRequests().
+        //* 관리자전체페이지를 권한을 인가요청할 때 http.authorizehttpRequests().
         http.authorizeHttpRequests().
         requestMatchers("/board/**").authenticated().
         requestMatchers("/manager/**").hasRole("MANAGER").
@@ -45,6 +45,7 @@ public class SecurityConfig
     	
         return http.build();
     }
+	
 	@Bean
 	public PasswordEncoder createPasswordEncoder() {
 	return new BCryptPasswordEncoder();

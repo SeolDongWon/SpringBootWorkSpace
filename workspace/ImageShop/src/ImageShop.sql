@@ -59,3 +59,28 @@ auth VARCHAR2(50) NOT NULL
 
 ALTER TABLE member_auth ADD CONSTRAINT fk_member_auth_user_no FOREIGN KEY (user_no) REFERENCES member(user_no);
 
+select * from member;
+select * from member_auth;
+select * from code_detail;
+
+SELECT code_name FROM code_detail
+		WHERE group_code ='A01' AND code_value = job;
+SELECT
+		user_no,user_id,user_pw,user_name,
+		(SELECT code_name FROM code_detail
+		WHERE group_code ='A01' AND code_value = job) AS job,
+		coin,reg_date
+		FROM member
+		ORDER BY reg_date DESC;
+        
+insert into member_auth (user_no, auth) values(1,'ROLE_USER');
+commit;
+SELECT
+		mem.user_no,mem.user_id,user_pw,user_name,job,coin,reg_date,upd_date,auth
+		FROM member mem
+		LEFT OUTER JOIN member_auth auth
+		ON mem.user_no =
+		auth.user_no
+		WHERE mem.user_no = 1;
+
+delete from member_auth where user_no=1 and auth='ROLE_USER';

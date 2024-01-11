@@ -100,8 +100,7 @@ public class SecurityConfig
 		return repo;
 		}
 	
-	
-	//@Autowired 를 진행하지 말 것
+//	@Autowired 를 진행하지 말 것
 //	@Autowired 
 	protected void configure(AuthenticationManagerBuilder auth) throws Exception {
 		// 지정된 아이디와 패스워드로 로그인이 가능하도록 설정한다. 

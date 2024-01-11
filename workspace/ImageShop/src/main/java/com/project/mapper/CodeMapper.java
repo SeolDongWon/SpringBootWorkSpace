@@ -8,4 +8,6 @@ public interface CodeMapper {
 	// 그룹코드 목록 조회
 	public List<CodeLabelValue> getCodeGroupList() throws Exception;
 
+	public List<CodeLabelValue> getCodeList(String groupCode);
+
 }
