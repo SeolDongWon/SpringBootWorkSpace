@@ -12,7 +12,7 @@
 <script>
 	$(document).ready(function() {
 
-		var formObj = $("#member");
+		var formObj = $("#modifyForm");
 
 		$("#btnModify").on("click", function() {
 			formObj.submit();
@@ -35,7 +35,7 @@
 		<spring:message code="user.header.modify" />
 	</h2>
 
-	<form:form modelAttribute="member" action="modify">
+	<form:form modelAttribute="modifyForm" action="modify">
 		<form:hidden path="userNo" />
 		<table>
 			<tr>

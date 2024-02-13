@@ -1,5 +1,6 @@
 package com.project.controller;
 
+
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,6 +18,9 @@ import com.project.domain.Member;
 import com.project.service.CodeService;
 import com.project.service.MemberService;
 
+import lombok.extern.java.Log;
+
+@Log
 @Controller
 @RequestMapping("/user")
 public class MemberController {
@@ -83,6 +87,7 @@ public class MemberController {
 	@RequestMapping(value = "/modify", method = RequestMethod.GET)
 	public void modifyForm(int userNo, Model model) throws Exception {
 		// 직업코드 목록을 조회하여 뷰에 전달
+		log.info("modifyForm");
 		String groupCode = "A01";
 		List<CodeLabelValue> jobList = codeService.getCodeList(groupCode);
 		model.addAttribute("jobList", jobList);
@@ -92,6 +97,7 @@ public class MemberController {
 	// 수정 처리
 	@RequestMapping(value = "/modify", method = RequestMethod.POST)
 	public String modify(Member member, RedirectAttributes rttr) throws Exception {
+		log.info("modify");
 		service.modify(member);
 		rttr.addFlashAttribute("msg", "SUCCESS");
 		return "redirect:/user/list";
